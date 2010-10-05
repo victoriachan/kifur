@@ -1,7 +1,7 @@
 from django.db import models
 
 class Tag(models.Model):
-    label = models.CharField(max_length=50)
+    label = models.CharField(max_length=100, unique=True)
     
     def __unicode__(self):
         return self.label
@@ -14,8 +14,8 @@ class Player(models.Model):
     )
     full_name = models.CharField(max_length=150, unique=True)
     rank = models.CharField(max_length=3, choices=RANK_CHOICES)
-    description = models.CharField(max_length=200)
-    tags = models.ManyToManyField(Tag, related_name='players')
+    description = models.CharField(max_length=200, null=True, blank=True)
+    tags = models.ManyToManyField(Tag, related_name='players', null=True, blank=True)
     
     def __unicode__(self):
         return self.full_name
@@ -32,7 +32,7 @@ class Kifu(models.Model):
         (u'Japanese', u'Nihon-Kiin rules (Japanese)'),
         (u'NZ', u'New Zealand rules'),
     )
-    sgf_text = models.TextField()
+    sgf = models.TextField()
     player_white = models.ForeignKey(Player, related_name='player_white')
     player_black = models.ForeignKey(Player, related_name='player_black')
     board_size = models.PositiveIntegerField(default=19)
@@ -40,9 +40,9 @@ class Kifu(models.Model):
     komi = models.DecimalField(max_digits=5, decimal_places=1, default=6.5)
     rules = models.CharField(max_length=30, default='Japanese', choices=RULES_CHOICES)
     result = models.CharField(max_length=20)
-    event = models.CharField(max_length=200, null=True)
-    description = models.CharField(max_length=200, null=True)
-    tags = models.ManyToManyField(Tag, related_name='kifus')
+    event = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(max_length=200, null=True, blank=True)
+    tags = models.ManyToManyField(Tag, related_name='kifus', null=True, blank=True)
     visibility = models.CharField(max_length=10, choices=VISIBILITY_CHOICES, default='private')
     date_recorded = models.DateField('date recorded')
     date_published = models.DateTimeField('date published')

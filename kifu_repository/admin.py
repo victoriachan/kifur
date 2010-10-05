@@ -5,7 +5,7 @@ from django.contrib import admin
 
 class KifuAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('SGF metadata', {'fields': ['sgf_text', 'player_white', 'player_black', 'board_size', 'handicap', 'komi', 'rules', 'event', 'date_recorded']}),
+        ('SGF metadata', {'fields': ['sgf', 'player_white', 'player_black', 'board_size', 'handicap', 'komi', 'rules', 'event', 'date_recorded']}),
         ('Kifur metadata', {'fields': ['description', 'tags', 'visibility', 'date_published']}),
     ]
     list_display = ('player_white', 'player_black', 'board_size', 'date_recorded', 'handicap')
