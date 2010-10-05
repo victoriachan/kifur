@@ -7,8 +7,13 @@ class Tag(models.Model):
         return self.label
         
 class Player(models.Model):
+    RANK_CHOICES = tuple(
+        [('%sk' % x, '%s kyu' % x) for x in range(30,0,-1)] +
+        [('%sd' % x, '%s dan' % x) for x in range(1,9)] +
+        [('%sp' % x, '%s pro' % x) for x in range(1,11)]
+    )
     full_name = models.CharField(max_length=150, unique=True)
-    rank = models.CharField(max_length=30)
+    rank = models.CharField(max_length=3, choices=RANK_CHOICES)
     description = models.CharField(max_length=200)
     tags = models.ManyToManyField(Tag, related_name='players')
     
