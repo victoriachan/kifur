@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Kifu List{% endblock %}
+{% block content %}
+  {% if kifu_list %}
+    <ul>
+    {% for kifu in kifu_list %}
+      <li><a href="/kifu/{{ kifu.id }}">{{ kifu }}</a></li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No kifu found.</p>
+  {% endif %}
+{% endblock %}
