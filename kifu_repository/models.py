@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 
 class Tag(models.Model):
     label = models.CharField(max_length=100, unique=True)
@@ -20,6 +21,16 @@ class Player(models.Model):
     def _get_tags(self):
         return self.tags.all()
     tagged_as = property(_get_tags)
+    
+    def _get_games(self):
+        return Kifu.objects.filter( Q(player_white=self) | Q(player_black=self))
+    games = property(_get_games)
+
+    def _get_games_count(self):
+# DEBUG: Throwing errors when adding 2 values. Something to do with null?
+#        return self.player_black.count + self.player_white.count
+        return self.games.count
+    total_games = property(_get_games_count)
     
     def __unicode__(self):
         return self.full_name
@@ -48,7 +59,7 @@ class Kifu(models.Model):
     description = models.CharField(max_length=200, null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name='kifus', null=True, blank=True)
     visibility = models.CharField(max_length=10, choices=VISIBILITY_CHOICES, default='private')
-    date_recorded = models.DateField('date recorded')
+    date_recorded = models.DateField('date')
     date_published = models.DateTimeField('date published')
     date_created = models.DateTimeField('date added', auto_now_add=True)
     

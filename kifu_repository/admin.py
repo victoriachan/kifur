@@ -15,7 +15,10 @@ class KifuAdmin(admin.ModelAdmin):
     ordering = ('-date_recorded',)
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'rank', 'description', 'tagged_as')
+    fieldsets = [
+        ('Kifur metadata', {'fields': ['full_name', 'rank', 'description', 'tags']}),
+    ]
+    list_display = ('full_name', 'rank', 'description', 'tagged_as', 'total_games')
     search_fields = ['description', 'full_name', 'rank', 'tags__label']
     ordering = ('full_name',)
 
