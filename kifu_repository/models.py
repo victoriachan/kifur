@@ -48,5 +48,12 @@ class Kifu(models.Model):
     date_published = models.DateTimeField('date published')
     date_created = models.DateTimeField('date added', auto_now_add=True)
     
+    def label(self):
+        "Returns label for this game"
+        return '%s vs %s (%s)' % (self.player_white.full_name, self.player_black.full_name, self.result)
+
     def __unicode__(self):
-        return '%s vs %s : %s' % (self.player_white.full_name, self.player_black.full_name, self.result)
+        return self.label
+        
+    class Meta:
+        verbose_name_plural = "kifu"    
