@@ -8,12 +8,17 @@ class KifuAdmin(admin.ModelAdmin):
         ('SGF metadata', {'fields': ['sgf', 'player_white', 'player_black', 'board_size', 'handicap', 'komi', 'rules', 'result', 'event', 'date_recorded']}),
         ('Kifur metadata', {'fields': ['description', 'tags', 'visibility']}),
     ]
-    list_display = ('label', 'player_white', 'player_black', 'result', 'board_size', 'handicap', 'date_recorded')
+    list_display = ('label', 'player_white', 'player_black', 'result', 'board_size', 'handicap', 'date_recorded', 'tagged_as')
     list_filter = ['date_recorded', 'handicap', 'board_size']
     search_fields = ['description', 'event', 'tags__label', 'player_white__full_name', 'player_black__full_name']
     date_hierachy = 'date_recorded'
     ordering = ('-date_recorded',)
 
+class PlayerAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'rank', 'description', 'tagged_as')
+    search_fields = ['description', 'full_name', 'rank', 'tags__label']
+    ordering = ('full_name',)
+
 admin.site.register(Kifu, KifuAdmin)
-admin.site.register(Player)
+admin.site.register(Player, PlayerAdmin)
 admin.site.register(Tag)

@@ -17,6 +17,10 @@ class Player(models.Model):
     description = models.CharField(max_length=200, null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name='players', null=True, blank=True)
     
+    def _get_tags(self):
+        return self.tags.all()
+    tagged_as = property(_get_tags)
+    
     def __unicode__(self):
         return self.full_name
 
@@ -48,12 +52,17 @@ class Kifu(models.Model):
     date_published = models.DateTimeField('date published')
     date_created = models.DateTimeField('date added', auto_now_add=True)
     
-    def label(self):
+    class Meta:
+        verbose_name_plural = "kifu"
+            
+    def _get_tags(self):
+        return self.tags.all()
+    tagged_as = property(_get_tags)
+        
+    def _get_label(self):
         "Returns label for this game"
         return '%s vs %s (%s)' % (self.player_white.full_name, self.player_black.full_name, self.result)
+    label = property(_get_label)
 
     def __unicode__(self):
         return self.label
-        
-    class Meta:
-        verbose_name_plural = "kifu"    
