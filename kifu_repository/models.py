@@ -27,9 +27,7 @@ class Player(models.Model):
     games = property(_get_games)
 
     def _get_games_count(self):
-# DEBUG: Throwing errors when adding 2 values. Something to do with null?
-#        return self.player_black.count + self.player_white.count
-        return self.games.count
+        return self.player_black.count() + self.player_white.count()
     total_games = property(_get_games_count)
     
     def __unicode__(self):
