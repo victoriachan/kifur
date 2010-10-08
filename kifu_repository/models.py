@@ -52,7 +52,7 @@ class Kifu(models.Model):
     handicap = models.PositiveIntegerField(default=0)
     komi = models.DecimalField(max_digits=5, decimal_places=1, default=6.5)
     rules = models.CharField(max_length=30, default='Japanese', choices=RULES_CHOICES)
-    result = models.CharField(max_length=20)
+    result = models.CharField(max_length=20, null=True, blank=True)
     event = models.CharField(max_length=200, null=True, blank=True)
     description = models.CharField(max_length=200, null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name='kifus', null=True, blank=True)
