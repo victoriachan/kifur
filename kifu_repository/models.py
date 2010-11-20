@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from django.contrib.auth.models import User
 
 class Tag(models.Model):
     label = models.CharField(max_length=100, unique=True)
@@ -17,7 +18,7 @@ class Player(models.Model):
     rank = models.CharField(max_length=3, choices=RANK_CHOICES)
     description = models.CharField(max_length=200, null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name='players', null=True, blank=True)
-    
+
     def _get_tags(self):
         return self.tags.all()
     tagged_as = property(_get_tags)
@@ -60,6 +61,7 @@ class Kifu(models.Model):
     date_recorded = models.DateField('date')
     date_published = models.DateTimeField('date published')
     date_created = models.DateTimeField('date added', auto_now_add=True)
+    added_by = models.ForeignKey(User, related_name='added_by', null=True)
     
     class Meta:
         verbose_name_plural = "kifu"

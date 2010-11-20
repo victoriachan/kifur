@@ -6,11 +6,11 @@ from django.contrib import admin
 class KifuAdmin(admin.ModelAdmin):
     fieldsets = [
         ('SGF metadata', {'fields': ['sgf', 'player_white', 'player_black', 'board_size', 'handicap', 'komi', 'rules', 'result', 'event', 'date_recorded']}),
-        ('Kifur metadata', {'fields': ['description', 'tags', 'date_published', 'visibility']}),
+        ('Kifur metadata', {'fields': ['description', 'tags', 'date_published', 'visibility', 'added_by']}),
     ]
-    list_display = ('label', 'player_white', 'player_black', 'result', 'board_size', 'handicap', 'date_recorded', 'tagged_as')
+    list_display = ('label', 'player_white', 'player_black', 'result', 'board_size', 'handicap', 'date_recorded', 'added_by', 'tagged_as')
     list_filter = ['date_recorded', 'handicap', 'board_size']
-    search_fields = ['description', 'event', 'tags__label', 'player_white__full_name', 'player_black__full_name']
+    search_fields = ['description', 'event', 'tags__label', 'player_white__full_name', 'player_black__full_name', 'added_by']
     date_hierachy = 'date_recorded'
     ordering = ('-date_recorded',)
 
