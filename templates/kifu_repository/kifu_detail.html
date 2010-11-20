@@ -3,3 +3,25 @@
 {% block content %}
   {{ kifu }}
 {% endblock %}
+{% block dev %}
+  <p>This page is the kifu details page. It should show: </p>
+  <ol>
+    <li>An embedded sgf player (eidogo?) loaded with the selected sgf (requires JS).</li>
+    <li>Comments on the game (+ add Comment form)</li>
+    <li>Meta data of the game</li>
+  </ol>
+  <h3>Support</h3>
+  <ul>
+    <li>If no JS, user should see static kifu image / svg instead.</li>
+    <li>Print should work, and print as numbered kifu</li>
+  </ul>
+  <h3>Features</h3>
+  <ul>
+    <li>download as static kifu image</li>
+    <li>download as sgf</li>
+    <li>export to eidogo?</li>
+    <li>add annotation to specific moves? (not supported by eidogo)</li> 
+    <li>[phase 2] upload variation</li>
+    <li>add comment</li>
+  </ul>
+{% endblock %}
