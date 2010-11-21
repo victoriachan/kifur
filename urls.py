@@ -1,6 +1,5 @@
 from django.conf.urls.defaults import *
-
-# Uncomment the next two lines to enable the admin:
+from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
@@ -12,3 +11,8 @@ urlpatterns = patterns('',
     (r'^', include('kifur.kifu_repository.urls')),
     (r'^', include('kifur.kifu_users.urls')),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )
