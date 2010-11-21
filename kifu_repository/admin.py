@@ -1,7 +1,7 @@
+from django.contrib import admin
 from kifur.kifu_repository.models import Kifu
 from kifur.kifu_repository.models import Player
 from kifur.kifu_repository.models import Tag
-from django.contrib import admin
 
 class KifuAdmin(admin.ModelAdmin):
     fieldsets = [
