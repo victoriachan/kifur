@@ -55,7 +55,7 @@ MEDIA_ROOT = ''
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 # UPDATE THIS
-MEDIA_URL = ''
+MEDIA_URL = '/static/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -102,6 +102,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'kifur.kifu_repository',
+    'kifur.kifu_users',
     'south',  
 )
 
@@ -117,3 +118,6 @@ SERVER_EMAIL = 'contact@example.com'
 # CACHE_BACKEND = 'memcached://unix:/home/<user>/webapps/kifu/memcached.sock'
 # CACHE_MIDDLEWARE_SECONDS = #The number of seconds each page should be cached.
 # CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+
+# Add custom user fields
+AUTH_PROFILE_MODULE = 'kifu_users.UserProfile'
