@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     slug = models.SlugField(max_length=30, unique=True, null=True, verbose_name="url path")
     
     def __str__(self):  
-          return "%s's profile" % self.user  
+          return "%s" % self.user
 
 #def create_user_profile(sender, instance, created, **kwargs):
 #    if created:  

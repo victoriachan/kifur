@@ -9,7 +9,17 @@
 </head>
 <body>
 <div id="site-wrapper">
-  <p class="site-name">Kifu Repository</p>
+  <div class="site-header">
+    <p class="site-name"><a href="/">Kifu Repository</a></p>
+    <ul class="primary-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/user/victoria">Dashboard</a></li>
+      <li><a href="/kifu/3/">Example game</a></li>
+      <li><a href="/">About</a></li>
+      <li><a href="/">Help</a></li>
+    </ul>
+  </div><!-- / .site-header -->
+  
   <h1>{% block title %}{% endblock %}</h1>
   <div id="dev">{% block dev %}{% endblock %}</div>
     {% block content %}{% endblock %}
