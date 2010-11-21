@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True, related_name='user_profile')
     #user = models.OneToOneField(User)
-    account_name = models.CharField(max_length=25, unique=True, null=True)
+    slug = models.SlugField(max_length=30, unique=True, null=True, verbose_name="url path")
     
     def __str__(self):  
           return "%s's profile" % self.user  
